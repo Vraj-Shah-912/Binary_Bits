@@ -1,5 +1,6 @@
 from flask import Flask, session, render_template, request, redirect, flash
 import pyrebase
+import mysql.connector
 
 app = Flask(__name__)
 config = {
@@ -58,7 +59,25 @@ def signup():
         cpassword = request.form.get('cpassword')
         if (password == cpassword):
             try:
-                user = auth.create_user_with_email_and_password(email, password)
+                # user = auth.create_user_with_email_and_password(email, password)
+                print(email)
+
+                connection = mysql.connector.connect(host='localhost',username='root',password='',database='binarybits')
+                print(email)
+
+                cursor= connection.cursor()
+                print(email)
+
+                str1="insert into user values('"
+                str2="','"
+                str3="')"
+                str = str1+email+str2+password+str3
+
+                print(str)
+
+                cursor.execute(str)
+                connection.commit()
+
                 flash("signup successfully","success")
                 return redirect('/login')
             except:
@@ -97,4 +116,4 @@ def forgot():
     else:
         return render_template('forgot.html')
 
-app.run(debug=True)
+app.run(debug=True,port=5001)
