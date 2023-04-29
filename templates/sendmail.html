@@ -7,8 +7,12 @@
     <link rel="stylesheet" href="">
 {% endblock style %}
 {% block body %}
-    <form action="send_mail.php" method="POST">
+    <form action="/sendmail" method="POST">
   <div class="container">
+    <div class="form-group">
+        <label>Title :</label>
+        <textarea placeholder="Enter Message" name="title" class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+      </div>
     <div class="form-group">
       <label for="">Enter Form link :</label>
       <input type="text" class="form-control" id="link" name="link" placeholder="Enter link">
@@ -65,7 +69,4 @@
         Send Email</button>
     </div>
   </form>
-{% endblock body %}
-  
-
-   
+{% endblock body %}

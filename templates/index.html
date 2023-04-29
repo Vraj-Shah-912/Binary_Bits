@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+index
+{% endblock title %}
+{% block style %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/st.css') }}" />
+{% endblock %}
+{% block body %}
+{% include 'nav.html' %}
+<div class="container">
+    {% set result = session['user'] %}
+    {% for user in session['user'] %}
+        <li>{{ user}}</li>
+    {% endfor %}
+
+    <div class="container">
+        <a href="/sendmail"><i class="fa fa-send-o"></i><br />Send Email</a>
+
+        <div class="container1">
+            Wanna share something?? Share the links to students via Gmail.
+            <!-- Share the link of Google Docs via Gmail to the students.  -->
+        </div>
+        <a href="/reminder"><i class="fa fa-bell"></i><br />Send Reminder</a>
+        <div class="container2">
+            Remind the students who haven't submitted the form yet and take follow-up.
+        </div>
+    </div>
+    {% endblock body %}
