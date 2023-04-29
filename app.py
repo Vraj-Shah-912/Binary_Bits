@@ -155,6 +155,12 @@ def sendmail():
             cursor.execute(sql)
             conn.commit()
 
+            sq = "insert into sentmail values('"+department+"',"+semester+",'"+batch+"','"+formlink+"','"+title+"')"
+            print(sq)
+
+            cursor.execute(sq)
+            conn.commit()
+
         except:
             flash("something went wrong", "danger")
             return redirect('/sendmail')
