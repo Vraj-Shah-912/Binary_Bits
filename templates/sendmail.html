@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}
+    sendmail
+{% endblock title %}
+{% block style %}
+    {{super()}}
+    <link rel="stylesheet" href="">
+{% endblock style %}
+{% block body %}
+    <form action="send_mail.php" method="POST">
+  <div class="container">
+    <div class="form-group">
+      <label for="">Enter Form link :</label>
+      <input type="text" class="form-control" id="link" name="link" placeholder="Enter link">
+      <small class="invalid-feedback is-invalid">Please enter link</small>
+    </div>
+
+    <div class="form-group">
+      <label>Message :</label>
+      <textarea placeholder="Enter Message" name="msg" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="department">Select your department :</label>
+      <select class="form-control" name="department" id="department" placeholder="Select your department">
+        <option>None</option>
+        <option>CE</option>
+        <option>IT</option>
+        <option>BM</option>
+        <option>MET</option>
+        <option>MECH</option>
+        <option>CIVIL</option>
+        <option>EC</option>
+        <option>IC</option>
+      </select>
+      <small class="invalid-feedback is-invalid">Please select department</small>
+    </div>
+    <div class="form-group">
+      <label for="semester">Select your semester :</label>
+      <select class="form-control" name="semester" id="semester">
+        <option>None</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+      </select>
+      <small class="invalid-feedback is-invalid">Please select semester</small>
+    </div>
+    <div class="form-group">
+      <label for="batch">Select your batch :</label>
+      <select class="form-control" name="batch" id="batch">
+        <option>None</option>
+        <option>A</option>
+        <option>B</option>
+      </select>
+      <small class="invalid-feedback is-invalid">Please select batch</small>
+    </div>
+
+    <div class="sendBtn">
+      <button type="submit" style="font-size:20px" name="submit" id="sendBtn"><i class="fa fa-send-o"></i><br>
+        Send Email</button>
+    </div>
+  </form>
+{% endblock body %}
+  
+
+   

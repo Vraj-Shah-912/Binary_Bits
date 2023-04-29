@@ -17,23 +17,21 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
-db=firebase.database()
-
-app.secret_key = 'secret'
-
+db = firebase.database()
 
 
 
 app = Flask(__name__)
 mysql = MySQL()
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] =''
+app.config['MYSQL_DATABASE_PASSWORD'] = ''
 app.config['MYSQL_DATABASE_DB'] = 'binarybits'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 conn = mysql.connect()
-cursor =conn.cursor()
+cursor = conn.cursor()
 
+app.secret_key = 'secret'
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
@@ -55,11 +53,11 @@ def login():
         try:
             user = auth.sign_in_with_email_and_password(email, password)
             session['user'] = user
-            flash("Logged in successfully","success")
+            flash("Logged in successfully", "success")
             return redirect('/')
         except:
-             flash("Incorect Email or password","danger")
-             return redirect('/login')
+            flash("Incorect Email or password", "danger")
+            return redirect('/login')
 
     return render_template('login.html')
 
@@ -77,11 +75,9 @@ def signup():
                 # user = auth.create_user_with_email_and_password(email, password)
                 print(email)
 
-            
-
-                str1="insert into user values('"
-                str2="','"
-                str3="')"
+                str1 = "insert into user values('"
+                str2 = "','"
+                str3 = "')"
                 str = str1+email+str2+password+str3
 
                 print(str)
@@ -92,26 +88,29 @@ def signup():
                 # flash("signup successfully","success")
                 return redirect('/login')
             except:
-                flash("User already exists","warning")
+                flash("User already exists", "warning")
                 return redirect('/signup')
         else:
-            flash("password and confirm paswsword not match","warning")
+            flash("password and confirm paswsword not match", "warning")
             return redirect('/signup')
     else:
         return render_template('signup.html')
+
 
 @app.route('/aleart')
 def aleart():
     return render_template('aleart.html')
 
+
 @app.route('/logout')
 def logout():
     if ('user' in session):
         session.pop('user')
-        flash("logout successfully","success")
+        flash("logout successfully", "success")
         return redirect('/login')
     else:
         return redirect('/login')
+
 
 @app.route('/forgot', methods=['POST', 'GET'])
 def forgot():
@@ -120,11 +119,32 @@ def forgot():
             email = request.form.get('email')
             user = auth.send_password_reset_email(email)
         except:
+            flash("user not found", "danger")
+            return redirect('/forgot')
+        flash("reset email has send ", "success")
+        return redirect('/')
+    else:
+        return render_template('forgot.html')
+
+
+@app.route('/sendmail',methods=['POST','GET'])
+def sendmail():
+    if request.method == 'POST':
+        try:
+            formlink = request.form.get('link')
+            msg = request.form.get('msg')
+            department = request.form.get('department')
+            semester = request.form.get('semester')
+            batch = request.form.get('batch')
+
+            
+        except:
             flash("user not found","danger")
             return redirect('/forgot')
         flash("reset email has send " ,"success")
         return redirect('/')
     else:
-        return render_template('forgot.html')
+        return render_template('sendmail.html')
 
-app.run(debug=True,port=5001)
+
+app.run(debug=True, port=5001)
