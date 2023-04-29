@@ -1,0 +1,37 @@
+:root {
+    --main-bg-color: rgb(98, 161, 156);
+    --main-bg-navbar: rgb(169, 214, 199);
+    --mian-bg-home:rgb(61 184 127 / 50%);
+}
+body{
+    background-color: var(--main-bg-navbar);
+}
+.btn{
+    padding: 5px 50px;
+    color: var(--main-bg-color);
+    margin: 25px 0 20px 0;
+    border: 2px solid var(--main-bg-color);
+    border-radius: 20px;
+    font-size: 20px;
+
+    
+}
+.box1{
+width: 500px;
+height: 300px;
+    margin-top: 50px;
+}
+.boxs{
+    background-color: var(--mian-bg-home);
+    height: 300px;
+    /* border: 2px solid black; */
+    border-radius: 10px;
+    box-shadow: 0 0 5px 5px var(--main-bg-color);
+    margin-right: 10px;
+font-size: 19px;
+}
+.icon a{
+    text-decoration: none;
+    color: black;
+    
+}
