@@ -7,10 +7,7 @@ index
 <link rel="stylesheet" href="{{ url_for('static', filename='css/st.css') }}" />
 {% endblock %}
 {% block body %}
-<!-- {% set result = session['user'] %}
-    {% for user in session['user'] %}
-        <li>{{ user}}</li>
-    {% endfor %} -->
+
 <div class="container d-flex justify-content-between align-items-center">
   <div><span class="fs-2"><b>binarybits</b></span></div>
   <button class="btn">logout</button>
@@ -25,6 +22,7 @@ index
         </div>
         <div class="icon mt-3">
           <a href="/sendmail"><img src="static\img\paper-plane-regular (1).svg" alt="" height="30px"><br /><b>Send email</b></a>
+          
         </div>
        
       </div>
@@ -36,6 +34,7 @@ index
         </div>
 <div class="icon">
         <a href="/reminder"><img src="/static/img/bell-regular.svg" alt="" height="30px" ><b>Send Reminder</b> </a>
+        
       </div>
       </div>
     </div>

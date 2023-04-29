@@ -7,37 +7,31 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/st.css') }}" />
 {% endblock %}
 {% block body %}
-<div class="container d-flex justify-content-between align-items-center">
-    <div><span class="fs-2"><b>binarybits</b></span></div>
-    <button class="btn">logout</button>
-  </div>
+{% include 'nav.html' %}
   <div class="container" style="width:750px;">
+    <div class="card sendcard">
+        <h1 class="sendheader d-flex justify-content-center">Send Email</h1>
     <form action="/sendmail" method="POST">
-  <div class="container">
     
     <div class="form-group">
       <label>Title :</label>
-      <textarea placeholder="Enter Message" name="title" class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+      <textarea placeholder="Enter Message" name="title" class="form-control my-1" id="title" rows="1"></textarea>
     </div>
     
     <div class="form-group">
-        <label>Title :</label>
-        <textarea placeholder="Enter Message" name="title" class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
-      </div>
-    <div class="form-group">
       <label for="">Enter Form link :</label>
-      <input type="text" class="form-control" id="link" name="link" placeholder="Enter link">
+      <input type="text" class="form-control my-1" id="link" name="link" placeholder="Enter link">
       <small class="invalid-feedback is-invalid">Please enter link</small>
     </div>
 
     <div class="form-group">
       <label>Message :</label>
-      <textarea placeholder="Enter Message" name="msg" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      <textarea placeholder="Enter Message" name="msg" class="form-control my-1" id="exampleFormControlTextarea1" rows="3"></textarea>
     </div>
 
     <div class="form-group">
       <label for="department">Select your department :</label>
-      <select class="form-control" name="department" id="department" placeholder="Select your department">
+      <select class="form-control my-1" name="department" id="department" placeholder="Select your department">
         <option>None</option>
         <option>CE</option>
         <option>IT</option>
@@ -52,7 +46,7 @@
     </div>
     <div class="form-group">
       <label for="semester">Select your semester :</label>
-      <select class="form-control" name="semester" id="semester">
+      <select class="form-control my-1" name="semester" id="semester">
         <option>None</option>
         <option>1</option>
         <option>2</option>
@@ -67,18 +61,16 @@
     </div>
     <div class="form-group">
       <label for="batch">Select your batch :</label>
-      <select class="form-control" name="batch" id="batch">
+      <select class="form-control my-1" name="batch" id="batch">
         <option>None</option>
         <option>A</option>
         <option>B</option>
       </select>
       <small class="invalid-feedback is-invalid">Please select batch</small>
-    </div>
-
-   
-      <button type="submit" style="font-size:15px" name="submit" id="sendBtn" class="btn btn-success"><i class="fa fa-send-o"></i><br>
+    
+      <button type="submit" style="font-size:15px" id="sendBtn" class="sandbtn"><i class="fa fa-send-o"></i><br>
         Send Email</button>
-   
   </form>   
+</div>
 </div>
 {% endblock body %}

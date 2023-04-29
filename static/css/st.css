@@ -8,13 +8,19 @@ body{
 }
 .btn{
     padding: 5px 50px;
-    color: var(--main-bg-color);
+    background: var(--mian-bg-home);
     margin: 25px 0 20px 0;
     border: 2px solid var(--main-bg-color);
     border-radius: 20px;
     font-size: 20px;
-
-    
+}
+.btn:hover{
+    padding: 5px 50px;
+    background: rgb(159, 242, 204);
+    margin: 25px 0 20px 0;
+    border: 2px solid var(--main-bg-color);
+    border-radius: 20px;
+    font-size: 20px;
 }
 .box1{
 width: 500px;
@@ -50,4 +56,27 @@ font-size: 19px;
     border-radius: 7px;
     opacity: .7;
 }
+.sandbtn
+{
+    background: var(--mian-bg-home);
+    margin: 20px 0px;
+    padding: 5px 40px;
+    border-radius: 10px;
+    border: 2px solid var(--main-bg-color);
 
+}
+.sandbtn:hover{
+    background: rgb(159, 242, 204);
+    border: 2px solid var(--main-bg-color);
+
+}
+.sendcard{
+    background: #d3fff14a;
+    padding: 40px 30px;
+}
+.sendheader{
+    color:var(--main-bg-home);
+    font-family: 'Bruno Ace SC', cursive;
+    margin: 20px 0px;
+
+}

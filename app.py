@@ -177,22 +177,18 @@ def sendreminder():
             googlesheet = request.form.get('googlesheet')
             subsheet = request.form.get('subsheet')
             msg = request.form.get('msg')
-            
-            
-
-            print(batch)
 
         except:
             flash("user not found", "danger")
             return redirect('/forgot')
         flash("reset email has send ", "success")
         return redirect('/')
-    
-    sq = "SELECT title FROM sentmail"
-    cursor.execute(sq)
-    result = cursor.fetchall()
-    print(result)
-    return render_template('sendreminder.html',result=result)
+    else:
+        sq = "SELECT title FROM sentmail"
+        cursor.execute(sq)
+        result = cursor.fetchall()
+        print(result)
+        return render_template('sendreminder.html',result=result)
 
 
 
