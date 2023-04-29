@@ -7,23 +7,40 @@ index
 <link rel="stylesheet" href="{{ url_for('static', filename='css/st.css') }}" />
 {% endblock %}
 {% block body %}
-{% include 'nav.html' %}
-<div class="container">
-    {% set result = session['user'] %}
+<!-- {% set result = session['user'] %}
     {% for user in session['user'] %}
         <li>{{ user}}</li>
-    {% endfor %}
-
-    <div class="container">
-        <a href="/sendmail"><i class="fa fa-send-o"></i><br />Send Email</a>
-
-        <div class="container1">
-            Wanna share something?? Share the links to students via Gmail.
-            <!-- Share the link of Google Docs via Gmail to the students.  -->
+    {% endfor %} -->
+<div class="container d-flex justify-content-between align-items-center">
+  <div><span class="fs-2"><b>binarybits</b></span></div>
+  <button class="btn">logout</button>
+</div>
+<div class="container px-4 text-center  box1">
+  <div class="row gx-5">
+    <div class="col">
+      <div class="p-3 boxs"> 
+        <div class="container1 my-3">
+          Wanna share something?? Share the links to students via Gmail.
+          <!-- Share the link of Google Docs via Gmail to the students.  -->
         </div>
-        <a href="/reminder"><i class="fa fa-bell"></i><br />Send Reminder</a>
-        <div class="container2">
-            Remind the students who haven't submitted the form yet and take follow-up.
+        <div class="icon mt-3">
+          <a href="/reminder"><img src="static\img\paper-plane-regular (1).svg" alt="" height="30px"><br /><b>Send email</b></a>
         </div>
+       
+      </div>
     </div>
-    {% endblock body %}
+    <div class="col">
+      <div class="p-3 boxs">
+        <div class="container2 my-3">
+          Remind the students who haven't submitted the form yet and take follow-up.
+        </div>
+<div class="icon">
+        <a href="/reminder"><img src="/static/img/bell-regular.svg" alt="" height="30px" ><br /><b>Send Reminder</b> </a>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock body %}

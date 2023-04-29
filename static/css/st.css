@@ -35,3 +35,14 @@ font-size: 19px;
     color: black;
     
 }
+.container1,.container2{
+    height: 150px;
+    
+}
+.icon{
+    height: 68px;
+    border: 2px solid black;
+    width: 153px;
+    border-radius: 7px;
+    opacity: .7;
+}
