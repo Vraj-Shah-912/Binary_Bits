@@ -4,6 +4,20 @@ import mysql.connector
 import db
 from sendemail import sendemail
 from flaskext.mysql import MySQL
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
+def get_email_list(mysheet):
+    
+    row = mysheet.col_values(2)
+    email_list = row[1:]
+    return email_list
+
+def compare_emails(l1, l2):
+    set1 = set(l1)
+    set2 = set(l2)
+    not_common_emails = list(set1.symmetric_difference(set2))
+    return not_common_emails
 
 app = Flask(__name__)
 config = {
@@ -174,25 +188,58 @@ def sendmail():
 def sendreminder():
     if request.method == 'POST':
         try:
+            name = session['user']
             googlesheet = request.form.get('googlesheet')
             subsheet = request.form.get('subsheet')
             msg = request.form.get('msg')
-            
-            
+            title=request.form.get('title')            
+            myscope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
 
-            print(batch)
+            mycreds = ServiceAccountCredentials.from_json_keyfile_name('secret-medium-385219-771c7ef500e1.json', myscope)
 
+            myclient = gspread.authorize(mycreds)
+
+            sh1 = googlesheet
+            sh2 = subsheet
+
+            mysheet = myclient.open(sh1).worksheet(sh2)
+            # l1 = ["e1@example.com", "e2@example.com", "e3@example.com"]
+            l2 = get_email_list(mysheet)
+            print(l2)
+            # print(l2)
+
+            cursor = conn.cursor()
+
+            s1="select * from sentmail where title='"
+            cursor.execute(s1+title+"'")
+            result = cursor.fetchone()
+            str1 = "select email from student where department = '"
+            str3 = "' and semester = "
+            str5 = " and batch = '"
+            str10 = str1+result[0]+str3+str(result[1])+str5+result[2]+"'"
+            cursor.execute(str10)
+            items = cursor.fetchall()
+            l1 = []
+            for item in items:
+                # int(item[0])
+                l1.append(item[0])
+            print(l1)
+            l3 = compare_emails(l1, l2)
+            print(l3)
+            for i in l3:
+                sendemail(i, 'Reminder', result[3], msg, name[0])
         except:
             flash("user not found", "danger")
             return redirect('/forgot')
         flash("reset email has send ", "success")
         return redirect('/')
-    
-    sq = "SELECT title FROM sentmail"
-    cursor.execute(sq)
-    result = cursor.fetchall()
-    print(result)
-    return render_template('sendreminder.html',result=result)
+    else:
+        cursor1=conn.cursor()
+        sq = "SELECT title FROM sentmail"
+        cursor1.execute(sq)
+        result = cursor1.fetchall()
+        print(result)
+        return render_template('sendreminder.html',result=result)
 
 
 
