@@ -159,7 +159,11 @@ def sendmail():
 
     
 @app.route('/reminder',methods=['POST','GET'])
+<<<<<<< Updated upstream
 def sendreminder():
+=======
+def reminder():
+>>>>>>> Stashed changes
     if request.method == 'POST':
         try:
             googlesheet = request.form.get('googlesheet')
@@ -178,7 +182,7 @@ def sendreminder():
         flash("reset email has send " ,"success")
         return redirect('/')
     else:
-        return render_template('sendmail.html')
+        return render_template('sendreminder.html')
 
 
 app.run(debug=True, port=5001)
