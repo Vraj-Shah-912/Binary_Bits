@@ -1,4 +1,11 @@
 {% extends 'base.html' %}
+{% block title %}
+    index
+{% endblock title %}
+{% block style %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}"/>
+{% endblock %}
 {% block body %}
   <div class="bdy">
   <div class="contant ">

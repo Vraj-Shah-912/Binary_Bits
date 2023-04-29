@@ -1,4 +1,11 @@
 {% extends 'base.html' %}
+{% block title %}
+    index
+{% endblock title %}
+{% block style %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}"/>
+{% endblock %}
 {% block body %}
 
 <div class="contant">
@@ -23,8 +30,11 @@
           </div>
           <div class="container d-flex justify-content-center">
             <button type="submit" class="btn bttn">Send Reset link</button>
+            <a href="/login" class="btn bttn px-4 mx-3">Back to login</a>
+
           </div>
         </form>
+        
       </div>
     </div>
   </div>
