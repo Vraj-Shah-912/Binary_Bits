@@ -7,14 +7,14 @@ index
 <link rel="stylesheet" href="{{ url_for('static', filename='css/st.css') }}" />
 {% endblock %}
 {% block body %}
-<div class="container d-flex justify-content-between align-items-center">
-  <div><span class="fs-2"><b>binarybits</b></span></div>
-  <a href="/logout" class="btn">logout</a>
-</div>
-{% set result = session['user'] %}
-    <!-- {% for user in session['user'] %}
+<!-- {% set result = session['user'] %}
+    {% for user in session['user'] %}
         <li>{{ user}}</li>
     {% endfor %} -->
+<div class="container d-flex justify-content-between align-items-center">
+  <div><span class="fs-2"><b>binarybits</b></span></div>
+  <button class="btn">logout</button>
+</div>
 <div class="container px-4 text-center  box1">
   <div class="row gx-5">
     <div class="col">
@@ -24,7 +24,7 @@ index
           <!-- Share the link of Google Docs via Gmail to the students.  -->
         </div>
         <div class="icon mt-3">
-          <a href="/sendmail"><i class="fa fa-bell"></i><br /><b>Send email</b></a>
+          <a href="/reminder"><img src="static\img\paper-plane-regular (1).svg" alt="" height="30px"><br /><b>Send email</b></a>
         </div>
        
       </div>
@@ -34,8 +34,8 @@ index
         <div class="container2 my-3">
           Remind the students who haven't submitted the form yet and take follow-up.
         </div>
-      <div class="icon">
-        <a href="/reminder"><br />  <b>Send Reminder</b> </a>
+<div class="icon">
+        <a href="/reminder"><img src="/static/img/bell-regular.svg" alt="" height="30px" ><br /><b>Send Reminder</b> </a>
       </div>
       </div>
     </div>
