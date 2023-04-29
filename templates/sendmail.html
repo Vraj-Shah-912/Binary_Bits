@@ -3,10 +3,15 @@
     sendmail
 {% endblock title %}
 {% block style %}
-    {{super()}}
-    <link rel="stylesheet" href="">
-{% endblock style %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/st.css') }}" />
+{% endblock %}
 {% block body %}
+<div class="container d-flex justify-content-between align-items-center">
+    <div><span class="fs-2"><b>binarybits</b></span></div>
+    <button class="btn">logout</button>
+  </div>
+  <div class="container" style="width:750px;">
     <form action="/sendmail" method="POST">
   <div class="container">
     
@@ -70,9 +75,10 @@
       <small class="invalid-feedback is-invalid">Please select batch</small>
     </div>
 
-    <div class="sendBtn">
-      <button type="submit" style="font-size:20px" name="submit" id="sendBtn"><i class="fa fa-send-o"></i><br>
+   
+      <button type="submit" style="font-size:15px" name="submit" id="sendBtn" class="btn btn-success"><i class="fa fa-send-o"></i><br>
         Send Email</button>
-    </div>
-  </form>
+   
+  </form>   
+</div>
 {% endblock body %}

@@ -38,6 +38,16 @@ font-size: 19px;
 .container1{
     height: 150px;
 }
+
 .container2{
     height: 150px;
 }
+.icon{
+    height: 68px;
+    border: 2px solid black;
+    /* padding: 20px; */
+    width: 153px;
+    border-radius: 7px;
+    opacity: .7;
+}
+
