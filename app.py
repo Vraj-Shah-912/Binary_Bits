@@ -2,6 +2,7 @@ from flask import Flask, session, render_template, request, redirect, flash
 import pyrebase
 import mysql.connector
 import db
+from sendemail import sendemail
 from flaskext.mysql import MySQL
 
 app = Flask(__name__)
@@ -124,7 +125,6 @@ def forgot():
     else:
         return render_template('forgot.html')
 
-
 @app.route('/sendmail',methods=['POST','GET'])
 def sendmail():
     if request.method == 'POST':
@@ -134,18 +134,32 @@ def sendmail():
             department = request.form.get('department')
             semester = request.form.get('semester')
             batch = request.form.get('batch')
+            cursor= conn.cursor()
 
-            
+            str1 = "select email from student where department = '"
+            str3 = "' and semester = "
+            str5 = " and batch = '"
+            str10 = str1+department+str3+str(semester)+str5+batch+"'"
+            cursor.execute(str10)
+            items = cursor.fetchall()
+            list=[]
+            for item in items:
+                #int(item[0])
+                list.append(item[0])
+            for i in list:
+                sendemail(i,'New Form',formlink,msg,'current user')
+
         except:
-            flash("user not found","danger")
-            return redirect('/forgot')
-        flash("reset email has send " ,"success")
+            flash("something went wrong","danger")
+            return redirect('/sendmail')
+        flash("email sent successfully" ,"success")
         return redirect('/')
     else:
         return render_template('sendmail.html')
+
     
-@app.route('/sendreminder',methods=['POST','GET'])
-def sendmail():
+@app.route('/reminder',methods=['POST','GET'])
+def sendreminder():
     if request.method == 'POST':
         try:
             googlesheet = request.form.get('googlesheet')
