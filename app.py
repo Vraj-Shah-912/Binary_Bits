@@ -57,8 +57,6 @@ def login():
             cursor.execute(str1+email+"'")
             result = cursor.fetchone()
             session['user'] = result
-            print(result+email)
-            flash("Logged in successfully", "success")
             return redirect('/')
         except:
             flash("Incorect Email or password", "danger")
@@ -153,10 +151,10 @@ def sendmail():
             for i in list:
                 sendemail(i, 'New Form', formlink, msg, name[0])
 
-            sq = "insert into sentmail values('"+department+"',"+semester+",'"+batch+"','"+formlink+"','"+title+"')"
-
-            cursor.execute(sq)
+            sql = "insert into sentmail values('"+department+"',"+semester+",'"+batch+"','"+formlink+"','"+title+"')"
+            cursor.execute(sql)
             conn.commit()
+
         except:
             flash("something went wrong", "danger")
             return redirect('/sendmail')
@@ -172,11 +170,9 @@ def sendreminder():
         try:
             googlesheet = request.form.get('googlesheet')
             subsheet = request.form.get('subsheet')
-            link = request.form.get('link')
             msg = request.form.get('msg')
-            department = request.form.get('department')
-            semester = request.form.get('semester')
-            batch = request.form.get('batch')
+            
+            
 
             print(batch)
 
@@ -185,8 +181,13 @@ def sendreminder():
             return redirect('/forgot')
         flash("reset email has send ", "success")
         return redirect('/')
-    else:
-        return render_template('sendreminder.html')
+    
+    sq = "SELECT title FROM sentmail"
+    cursor.execute(sq)
+    result = cursor.fetchall()
+    print(result)
+    return render_template('sendreminder.html',result=result)
+
 
 
 app.run(debug=True, port=5001)
