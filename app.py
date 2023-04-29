@@ -183,7 +183,7 @@ def sendreminder():
         flash("reset email has send " ,"success")
         return redirect('/')
     else:
-        return render_template('sendmail.html')
+        return render_template('sendreminder.html')
 
 
 app.run(debug=True, port=5001)
