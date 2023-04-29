@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="contant">
+    <div class="container d-flex align-items-center">
+      <div
+        class="card border-none m-auto login d-flex align-items-center"
+        style="width: 500px"
+      >
+        <div class="container d-flex justify-content-center">
+          <h1 class="header">Forgot Password</h1>
+        </div>
+        <form class="form" action="/forgot" method="POST">
+          <div class="label d-flex align-items-center">
+            <span class="material-symbols-outlined">Email </span>
+            <input
+              type="email"
+              class="fc"
+              name="email"
+              id="exampleInputEmail1"
+              placeholder="Email"
+            />
+          </div>
+          <div class="container d-flex justify-content-center">
+            <button type="submit" class="btn bttn">Send Reset link</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+    {% endblock body %}
+

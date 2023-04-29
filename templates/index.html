@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}
+    index
+{% endblock title %}
+{% block style %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/st.css') }}"/>
+{% endblock %}
+{% block body %}
+{% include 'nav.html' %}
+<div class="container">
+    <div class="card my-5">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, voluptatem blanditiis explicabo praesentium dolores veniam eveniet, quod molestias vitae quos quam quasi repellat impedit iure quo pariatur quibusdam accusantium necessitatibus!</p>
+    </div>
+</div>
+{% endblock body %}

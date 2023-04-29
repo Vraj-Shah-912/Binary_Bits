@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block body %}
+  <div class="bdy">
+  <div class="contant ">
+    <div class=" login  justify-content-center" style="width: 500px">
+        <div class="container d-flex justify-content-center">
+            <h1 class="header">Login</h1>
+        </div>
+        <form class="form" action="/login" method="POST">
+            <div class="label d-flex align-items-center">
+                <span class="material-symbols-outlined">Email</span>
+                <input type="email" class="fc" name="email" id="exampleInputEmail1" placeholder="Email" />
+            </div>
+            <div class="label d-flex align-items-center">
+                <span class="material-symbols-outlined">key</span>
+                <input type="password" class="fc" name="password" placeholder="Password" id="password" />
+            </div>
+            <div class=" d-flex color justify-content-end">
+              <a href="/forgot" class="forgot">forgot password?</a>
+              <a href="/signup" class="forgot mx-5">Signup</a>
+          </div><span>
+            <div class=" d-flex justify-content-center my-2">
+              <button type="submit" class="btn bttn">Submit</button>
+          </div>
+          </span>
+        </form>
+        
+      </div>
+</div>
+</div>
+
+
+{% endblock body %}

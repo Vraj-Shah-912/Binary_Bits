@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+:root {
+    --main-bg-color: rgb(98, 161, 156);
+    --main-bg-navbar: rgb(169, 214, 199);
+}
+
+body {
+    background-image: url(/static/images/final.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+nav .subtitle {
+    font-size: 30px;
+    font-weight: 900;
+}
+
+nav .subtitle span {
+    color: var(--main-bg-color);
+}
+
+nav h1 {
+    color: var(--main-bg-navbar);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.logo {
+    width: 160px;
+    height: 30px;
+}
+
+nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 10px 20px;
+}
+
+nav ul li a {
+    color: var(--main-bg-color);
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    width: 0;
+    height: 3px;
+    background: var(--main-bg-color);
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: 0.5s;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+.contant {
+    width: 60vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logincontiner {
+    width: 60vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.border-none{
+    border: none;
+}
+
+.login {
+    /* background: #1d455d ; */
+margin-top: 60px;
+    color: var(--main-bg-color);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.header {
+    margin: 40px 0 0 0;
+    font-family: 'Bruno Ace SC', cursive;
+    color: var(--main-bg-color);
+
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48;
+    /* background: #0d2b3d ; */
+    padding: 5px;
+    color: var(--main-bg-color);
+}
+
+.fc {
+    /* background: #0d2b3d ; */
+    color: var(--main-bg-color);
+    /* display: block; */
+    margin: 10px auto;
+    width: 392px;
+    height: 40px;
+    border: none;
+    border-bottom: 1PX solid var(--main-bg-color);
+    padding: 9px;
+}
+
+.fc:hover {
+    border: 2px solid var(--main-bg-color);
+    border-radius: 20px;
+}
+
+.label {
+    margin: 10px;
+    display: block;
+
+}
+
+.color {
+    color: var(--main-bg-color);
+}
+
+.bttn {
+    /* background: #3fc3b9 ; */
+    padding: 5px 50px;
+    color: var(--main-bg-color);
+    margin: 25px 0 20px 0;
+    border: 2px solid var(--main-bg-color);
+    border-radius: 20px;
+    font-size: 20px;
+
+}
+
+.bttn:hover {
+    background: rgb(97, 161, 152);
+    color: aliceblue;
+}
+
+.btnm {
+
+    left: 65px;
+    position: relative;
+}
+
+.forgot {
+    font-size: 15px;
+    /* opacity: 30%; */
+    margin: 20px 0 0 0;
+    color: #446c83;
+    text-decoration: none;
+}
+

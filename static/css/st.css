@@ -1,0 +1,25 @@
+:root {
+    --main-bg-color: rgb(98, 161, 156);
+    --main-bg-navbar: rgb(169, 214, 199);
+    --mian-bg-home:rgb(61 184 127 / 50%);
+}
+
+.navc{
+    background: var(--mian-bg-home);
+}
+nav h1{
+    margin-left: 30px;
+}
+ul {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.blogout{
+    margin: 0 20px;
+    background: var(--main-bg-color);
+    border: none;
+    padding: 10px 20px;
+}
+.blogout:hover{
+    background: var(--mian-bg-home);
+}
