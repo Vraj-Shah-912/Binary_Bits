@@ -50,8 +50,12 @@ def login():
         password = request.form.get('password')
 
         try:
-            user = auth.sign_in_with_email_and_password(email, password)
-            session['user'] = user
+            auth.sign_in_with_email_and_password(email, password)
+            
+            str1="select * from faculty where email='"
+            cursor.execute(str1+email+"'")
+            result = cursor.fetchone()
+            session['user'] = result
             flash("Logged in successfully", "success")
             return redirect('/')
         except:
@@ -71,7 +75,7 @@ def signup():
         cpassword = request.form.get('cpassword')
         if (password == cpassword):
             try:
-                # user = auth.create_user_with_email_and_password(email, password)
+                user = auth.create_user_with_email_and_password(email, password)
                 print(email)
 
                 str1 = "insert into user values('"
@@ -84,7 +88,7 @@ def signup():
                 cursor.execute(str)
                 conn.commit()
 
-                # flash("signup successfully","success")
+                flash("signup successfully","success")
                 return redirect('/login')
             except:
                 flash("User already exists", "warning")
@@ -134,6 +138,7 @@ def sendmail():
             department = request.form.get('department')
             semester = request.form.get('semester')
             batch = request.form.get('batch')
+            name=session['user']
             cursor= conn.cursor()
 
             str1 = "select email from student where department = '"
@@ -147,7 +152,7 @@ def sendmail():
                 #int(item[0])
                 list.append(item[0])
             for i in list:
-                sendemail(i,'New Form',formlink,msg,'current user')
+                sendemail(i,'New Form',formlink,msg,name[0])
 
         except:
             flash("something went wrong","danger")
