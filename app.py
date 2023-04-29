@@ -75,7 +75,7 @@ def signup():
         cpassword = request.form.get('cpassword')
         if (password == cpassword):
             try:
-                # user = auth.create_user_with_email_and_password(email, password)
+                user = auth.create_user_with_email_and_password(email, password)
                 print(email)
 
                 str1 = "insert into user values('"
@@ -88,7 +88,7 @@ def signup():
                 cursor.execute(str)
                 conn.commit()
 
-                # flash("signup successfully","success")
+                flash("signup successfully","success")
                 return redirect('/login')
             except:
                 flash("User already exists", "warning")
