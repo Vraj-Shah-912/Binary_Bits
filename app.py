@@ -1,6 +1,8 @@
 from flask import Flask, session, render_template, request, redirect, flash
 import pyrebase
 import mysql.connector
+import db
+from flaskext.mysql import MySQL
 
 app = Flask(__name__)
 config = {
@@ -18,6 +20,19 @@ auth = firebase.auth()
 db=firebase.database()
 
 app.secret_key = 'secret'
+
+
+
+
+app = Flask(__name__)
+mysql = MySQL()
+app.config['MYSQL_DATABASE_USER'] = 'root'
+app.config['MYSQL_DATABASE_PASSWORD'] =''
+app.config['MYSQL_DATABASE_DB'] = 'binarybits'
+app.config['MYSQL_DATABASE_HOST'] = 'localhost'
+mysql.init_app(app)
+conn = mysql.connect()
+cursor =conn.cursor()
 
 
 @app.route('/', methods=['POST', 'GET'])
@@ -62,11 +77,7 @@ def signup():
                 # user = auth.create_user_with_email_and_password(email, password)
                 print(email)
 
-                connection = mysql.connector.connect(host='localhost',username='root',password='',database='binarybits')
-                print(email)
-
-                cursor= connection.cursor()
-                print(email)
+            
 
                 str1="insert into user values('"
                 str2="','"
@@ -76,9 +87,9 @@ def signup():
                 print(str)
 
                 cursor.execute(str)
-                connection.commit()
+                conn.commit()
 
-                flash("signup successfully","success")
+                # flash("signup successfully","success")
                 return redirect('/login')
             except:
                 flash("User already exists","warning")
