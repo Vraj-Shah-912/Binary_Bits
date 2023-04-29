@@ -19,8 +19,6 @@ firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
 db = firebase.database()
 
-
-
 app = Flask(__name__)
 mysql = MySQL()
 app.config['MYSQL_DATABASE_USER'] = 'root'
@@ -137,6 +135,28 @@ def sendmail():
             semester = request.form.get('semester')
             batch = request.form.get('batch')
 
+            
+        except:
+            flash("user not found","danger")
+            return redirect('/forgot')
+        flash("reset email has send " ,"success")
+        return redirect('/')
+    else:
+        return render_template('sendmail.html')
+    
+@app.route('/sendreminder',methods=['POST','GET'])
+def sendmail():
+    if request.method == 'POST':
+        try:
+            googlesheet = request.form.get('googlesheet')
+            subsheet = request.form.get('subsheet')
+            link = request.form.get('link')
+            msg = request.form.get('msg')
+            department = request.form.get('department')
+            semester = request.form.get('semester')
+            batch = request.form.get('batch')
+
+            print(batch)
             
         except:
             flash("user not found","danger")
