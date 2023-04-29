@@ -32,8 +32,5 @@ def sendemail(reciever,subject,link,msg,name):
 
 
 
-reciever = 'svraj912@gmail.com'
-sendemail(reciever,'Fill out new form','https://docs.google.com/forms/d/e/1FAIpQLSdf0j1iwaSYNB1s6JnLX8tS2D-O4D5oqwHBExEUm6C1kErT2A/viewform?usp=sf_link','kindly fill out this form','Vraj Shah')
-
 
 #sendemail(sender=sender,reciever=reciever,apppass=apppass)
