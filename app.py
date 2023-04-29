@@ -32,6 +32,7 @@ cursor = conn.cursor()
 
 app.secret_key = 'secret'
 
+
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if ('user' in session):
@@ -50,12 +51,13 @@ def login():
         password = request.form.get('password')
 
         try:
-            auth.sign_in_with_email_and_password(email, password)
-            
-            str1="select * from faculty where email='"
+            user=auth.sign_in_with_email_and_password(email, password)
+
+            str1 = "select * from faculty where email='"
             cursor.execute(str1+email+"'")
             result = cursor.fetchone()
             session['user'] = result
+            print(result+email)
             flash("Logged in successfully", "success")
             return redirect('/')
         except:
@@ -70,25 +72,24 @@ def signup():
     if ('user' in session):
         return redirect('/')
     if request.method == 'POST':
+        name = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('password')
         cpassword = request.form.get('cpassword')
         if (password == cpassword):
             try:
-                user = auth.create_user_with_email_and_password(email, password)
-                print(email)
+                user = auth.create_user_with_email_and_password(
+                    email, password)
 
-                str1 = "insert into user values('"
+                str1 = "insert into faculty values('"
                 str2 = "','"
                 str3 = "')"
-                str = str1+email+str2+password+str3
-
-                print(str)
+                str = str1+name+str2+email+str2+password+str3
 
                 cursor.execute(str)
                 conn.commit()
 
-                flash("signup successfully","success")
+                flash("signup successfully", "success")
                 return redirect('/login')
             except:
                 flash("User already exists", "warning")
@@ -99,10 +100,6 @@ def signup():
     else:
         return render_template('signup.html')
 
-
-@app.route('/aleart')
-def aleart():
-    return render_template('aleart.html')
 
 
 @app.route('/logout')
@@ -129,17 +126,19 @@ def forgot():
     else:
         return render_template('forgot.html')
 
-@app.route('/sendmail',methods=['POST','GET'])
+
+@app.route('/sendmail', methods=['POST', 'GET'])
 def sendmail():
     if request.method == 'POST':
         try:
+            title= request.form.get('title')
             formlink = request.form.get('link')
             msg = request.form.get('msg')
             department = request.form.get('department')
             semester = request.form.get('semester')
             batch = request.form.get('batch')
-            name=session['user']
-            cursor= conn.cursor()
+            name = session['user']
+            cursor = conn.cursor()
 
             str1 = "select email from student where department = '"
             str3 = "' and semester = "
@@ -147,28 +146,28 @@ def sendmail():
             str10 = str1+department+str3+str(semester)+str5+batch+"'"
             cursor.execute(str10)
             items = cursor.fetchall()
-            list=[]
+            list = []
             for item in items:
-                #int(item[0])
+                # int(item[0])
                 list.append(item[0])
             for i in list:
-                sendemail(i,'New Form',formlink,msg,name[0])
+                sendemail(i, 'New Form', formlink, msg, name[0])
 
+            sq = "insert into sentmail values('"+department+"',"+semester+",'"+batch+"','"+formlink+"','"+title+"')"
+
+            cursor.execute(sq)
+            conn.commit()
         except:
-            flash("something went wrong","danger")
+            flash("something went wrong", "danger")
             return redirect('/sendmail')
-        flash("email sent successfully" ,"success")
+        flash("email sent successfully", "success")
         return redirect('/')
     else:
         return render_template('sendmail.html')
 
-    
-@app.route('/reminder',methods=['POST','GET'])
-<<<<<<< Updated upstream
+
+@app.route('/reminder', methods=['POST', 'GET'])
 def sendreminder():
-=======
-def reminder():
->>>>>>> Stashed changes
     if request.method == 'POST':
         try:
             googlesheet = request.form.get('googlesheet')
@@ -180,11 +179,11 @@ def reminder():
             batch = request.form.get('batch')
 
             print(batch)
-            
+
         except:
-            flash("user not found","danger")
+            flash("user not found", "danger")
             return redirect('/forgot')
-        flash("reset email has send " ,"success")
+        flash("reset email has send ", "success")
         return redirect('/')
     else:
         return render_template('sendreminder.html')
