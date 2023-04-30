@@ -1,21 +1,22 @@
 {% extends 'base.html' %}
 {% block title %}
-    sendreminder
+sendreminder
 {% endblock title %}
 {% block style %}
-    {{super()}}
+{{super()}}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/st.css') }}" />
 
 {% endblock style %}
 {% block body %}
 {% include 'nav.html' %}
-<form action="/sendreminder" method="POST">
+<form action="/reminder" method="POST">
   <div class="container" style="width:750px;">
     <div class="card sendcard">
       <h1 class="sendheader d-flex justify-content-center">Send Reminder</h1>
-          <div class="form-group">
+      <div class="form-group">
         <label for="text">Google Sheet Name :</label>
-        <input type="text" class="form-control my-1" id="googleSheet" name="googlesheet" placeholder="Enter Google Sheet Name">
+        <input type="text" class="form-control my-1" id="googleSheet" name="googlesheet"
+          placeholder="Enter Google Sheet Name">
         <small class="invalid-feedback is-invalid">Please Enter Google Sheet Name</small>
       </div>
 
@@ -25,42 +26,50 @@
         <small class="invalid-feedback is-invalid">Please Enter Sub Sheet Name</small>
       </div>
 
-    <div class="form-group">
-      <label for="batch">Select form that you have sent :</label>
-      <select class="form-control my-1" name="title" id="batch">
-        <option>--Select--</option>
-        {% for result in result%}
-        <option>{{ result[0] }}</option>
+      <div class="form-group">
+        <label for="batch">Select form that you have sent :</label>
+        <select class="form-control my-1" name="title" id="batch">
+          <option>--Select--</option>
+          {% for result in result%}
+          <option>{{ result[0] }}</option>
+          {% endfor %}
+        </select>
+        <small class="invalid-feedback is-invalid">Please select batch</small>
+      </div>
+
+      <div class="form-group">
+        <label>Message :</label>
+        <textarea placeholder="Enter Message" name="msg" class="form-control my-1" id="exampleFormControlTextarea1"
+          rows="3"></textarea>
+      </div>
+        <button type="submit" name="reminder" style="font-size:15px" id="sendBtn"
+          class="sandbtn p-3 mx-2 text-center"><i class="fa fa-send-o"></i><br>
+          Send Reminder
+        </button>
+        <!-- <button type="submit" name="followup" style="font-size:15px" id="sendBtn"
+          class="sandbtn p-3 mx-2 text-center"><i class="fa fa-send-o"></i><br>
+          Followup
+        </button> -->
+</form>
+</div>
+</div>
+<div class="container">
+  <table class="table table-success table-striped-columns">
+    <thead>
+      <tr>
+        <!-- <th scope="col">Sno</th> -->
+        <th scope="col">Email</th>
+        <!-- <th scope="col">Name</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in l3 %}
+      <tr>
+           <td>{{item}}</td>
+      </tr>
         {% endfor %}
-      </select>
-      <small class="invalid-feedback is-invalid">Please select batch</small>
-    </div>
-
-    <div class="form-group">
-      <label>Message :</label>
-      <textarea placeholder="Enter Message" name="msg" class="form-control my-1" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-    <div class="row">
-<div class="col-md-3
-">
-  <button type="submit" style="font-size:15px" id="sendBtn" class="sandbtn "><i class="fa fa-send-o"></i><br>
-    Send Reminder</button>
-  </div>
-  <div class="col-md-3">
-
-    <button type="submit" style="font-size:15px" id="sendBtn" class="sandbtn"><i class="fa fa-send-o"></i><br>
-      Follow Up</button>
-    </div>
-        </div>
-    <!-- <div class="sendBtn">
-      <button type="submit" style="font-size:20px" name="reminder" id="sendBtn"><i class="fa fa-bell"></i><br>
-        Send Reminder</button>
-    </div> -->
-    
-    <!-- <div class="followupBtn">
-        <button type="followup" name="followup" style="font-size:20px" id="followupBtn"> <i class="fa fa-check"></i><br>Follow up</button>
-    </div> -->
-  </form>
+ 
+    </tbody>
+</table>
 </div>
-</div>
-  {% endblock body %}
+{% endblock body %}

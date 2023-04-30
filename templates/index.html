@@ -7,11 +7,7 @@ index
 <link rel="stylesheet" href="{{ url_for('static', filename='css/st.css') }}" />
 {% endblock %}
 {% block body %}
-
-<div class="container d-flex justify-content-between align-items-center">
-  <div><span class="fs-2"><b>binarybits</b></span></div>
-  <button class="btn">logout</button>
-</div>
+{% include 'nav.html' %}
 <div class="container px-4 text-center  box1">
   <div class="row gx-5">
     <div class="col">

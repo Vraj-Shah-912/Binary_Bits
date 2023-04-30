@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+    follow up
+{% endblock title %}
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/st.css') }}" />
+{% endblock style %}
+{% block body %}
+<table class="table table-success table-striped-columns">
+        <thead>
+          <tr>
+            <th scope="col">Sno</th>
+            <th scope="col">Email</th>
+            <!-- <th scope="col">Name</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {% for item in items %}
+               <td>{items[0]}</td>
+            {% endfor %}
+            
+            <!-- <td>Otto</td> -->
+          </tr>
+          
+        </tbody>
+  </table>
+{% endblock body %}

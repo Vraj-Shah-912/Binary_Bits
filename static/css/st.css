@@ -63,7 +63,9 @@ font-size: 19px;
     padding: 5px 40px;
     border-radius: 10px;
     border: 2px solid var(--main-bg-color);
-
+    text-decoration: none;
+    color: black;
+    width: 170px;
 }
 .sandbtn:hover{
     background: rgb(159, 242, 204);
