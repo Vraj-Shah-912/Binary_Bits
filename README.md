@@ -14,7 +14,8 @@ Technology used
 
     Python/Flask for Backend
     MySql for Database
-    PHP/HTML/CSS/JS for Frontend
+    HTML/CSS/JS for Frontend
+    Firebase for authentication
 
 achievements 
 
