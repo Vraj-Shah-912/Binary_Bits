@@ -16,7 +16,9 @@ Technology used
     MySql for Database
     PHP/HTML/CSS/JS for Frontend
 
+achievements 
 
-achievements : 
-    We were top 5 in our track open innovation. 
+    We were top 5 in our track open innovation.
     We were top 9 overall HackNUthon.
+
+
